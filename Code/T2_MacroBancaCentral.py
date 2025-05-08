@@ -344,5 +344,15 @@ plt.tight_layout()
 plt.savefig(os.path.join(ruta_base, "Estimación_USD_en_Colombia.png"), dpi=300)  
 plt.show()
 
+X = np.log(dollar_flow_estimation['BaseMonetaria_COP'])
+y = np.log(dollar_flow_estimation['Dolares_estimados'])
+# Agregar constante (intercepto)
+X = sm.add_constant(X)
+# Ajustar el modelo OLS
+model = sm.OLS(y, X).fit()
+
+# Mostrar resultados
+print(model.summary())
+
 #https://totoro.banrep.gov.co/estadisticas-economicas/faces/pages/charts/line.xhtml?facesRedirect=true ----Reservas internacionales brutas (sin FLAR)
 
